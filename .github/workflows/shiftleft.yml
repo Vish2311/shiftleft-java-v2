@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check-Out Trigger Commit
-      - uses: actions/checkout@v3
+        uses: actions/checkout@v3
 
       # The sample vulnerable codebase, ShiftLeft-Java, is written in Java 11, so the appropriate
       # version is set for the setup-java action.
