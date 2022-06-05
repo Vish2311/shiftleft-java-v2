@@ -4,37 +4,54 @@
 name: ShiftLeft
 
 on:
-  pull_request:
   workflow_dispatch:
+  pull_request:
 
 jobs:
-  NextGen-Static-Analysis:
+
+  # ShiftLeft Java analysis requires artifacts generated during Java build, stored
+  # within a codebases's target binary.  Pre-processing for ShiftLeft Java analysis
+  # therefore consists of building a codebase's target binary and making it available
+  # to the ShiftLeft CLI for analysis.
+  Prepare-Analysis-Workspace:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    # We are building this application with Java 11
-    - name: Setup Java JDK
-      uses: actions/setup-java@v1.4.3
-      with:
-        java-version: 11.0.x
-    - name: Package with maven
-      run: mvn compile package
-    - name: Download ShiftLeft CLI
-      run: |
-        curl https://cdn.shiftleft.io/download/sl > ${GITHUB_WORKSPACE}/sl && chmod a+rx ${GITHUB_WORKSPACE}/sl
-    # ShiftLeft requires Java 1.8. Post the package step override the version
-    - name: Setup Java JDK
-      uses: actions/setup-java@v1.4.3
-      with:
-        java-version: 1.8
-    - name: Extract branch name
-      shell: bash
-      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-      id: extract_branch
-    - name: NextGen Static Analysis
-      run: ${GITHUB_WORKSPACE}/sl analyze --strict --wait --app shiftleft-java-demo --tag branch=${{ github.head_ref || steps.extract_branch.outputs.branch }} --vcs-prefix-correction "io/shiftleft=src/main/java/" --java --cpg target/hello-shiftleft-0.0.1.jar
-      env:
-        SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
+      - name: Check-Out Trigger Commit
+      - uses: actions/checkout@v3
+
+      # The sample vulnerable codebase, ShiftLeft-Java, is written in Java 11, so the appropriate
+      # version is set for the setup-java action.
+      - name: Setup Java JDK
+        uses: actions/setup-java@v1.4.3
+        with:
+          java-version: 11.0.x
+
+      - name: Build Java Binary
+        run: mvn compile package
+
+  Perform-ShiftLeft-Analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download ShiftLeft CLI
+        run: |
+          curl https://cdn.shiftleft.io/download/sl > ${GITHUB_WORKSPACE}/sl && chmod a+rx ${GITHUB_WORKSPACE}/sl
+
+      # The ShiftLeft CLI requires Java 1.8 for execution, so the appropriate
+      # version is set for the setup-java action.
+      - name: Setup Java JDK
+        uses: actions/setup-java@v1.4.3
+        with:
+          java-version: 1.8
+
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+
+      - name: NextGen Static Analysis
+        run: ${GITHUB_WORKSPACE}/sl analyze --strict --wait --app shiftleft-java-demo --tag branch=${{ github.head_ref || steps.extract_branch.outputs.branch }} --vcs-prefix-correction "io/shiftleft=src/main/java/" --java --cpg target/hello-shiftleft-0.0.1.jar
+        env:
+          SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
         
   Build-Rules: 
     runs-on: ubuntu-latest
