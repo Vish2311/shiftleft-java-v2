@@ -13,7 +13,7 @@ jobs:
   # within a codebases's target binary.  Pre-processing for ShiftLeft Java analysis
   # therefore consists of building a codebase's target binary and making it available
   # to the ShiftLeft CLI for analysis.
-  Prepare-Analysis-Workspace:
+  Prepare-Workspace:
     runs-on: ubuntu-latest
     steps:
       - name: Check-Out Trigger Commit
@@ -31,7 +31,7 @@ jobs:
 
   Perform-ShiftLeft-Analysis:
     runs-on: ubuntu-latest
-    needs: Prepare-Analysis-Workspace
+    needs: Prepare-Workspace
     
     steps:
       - name: Download ShiftLeft CLI
