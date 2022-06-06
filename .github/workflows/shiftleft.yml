@@ -53,6 +53,11 @@ jobs:
           path: ${{ github.workspace }}/**
           key: workspace    
     
+      - name: Download ShiftLeft CLI
+        run: |
+          curl https://cdn.shiftleft.io/download/sl > ${GITHUB_WORKSPACE}/sl && \
+          chmod a+rx ${GITHUB_WORKSPACE}/sl  
+    
       # The ShiftLeft CLI requires Java 1.8 for execution, so the appropriate
       # version is set for the setup-java action.
       - name: Setup Java JDK
