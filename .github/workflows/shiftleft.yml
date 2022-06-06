@@ -28,14 +28,12 @@ jobs:
 
       - name: Build Java Binary
         run: |
-          mvn compile package && \
-          echo ${GITHUB_WORKSPACE} && \
-          ls -R ${GITHUB_WORKSPACE}
+          mvn compile package
         
       - uses: actions/upload-artifact@v2
         with:
           name: repo-contents
-          path: ${GITHUB_WORKSPACE}
+          path: ${{ GITHUB_WORKSPACE }}/
 
   Perform-ShiftLeft-Analysis:
     runs-on: ubuntu-latest
