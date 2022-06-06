@@ -78,7 +78,7 @@ jobs:
         env:
           SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
         
-  Build-Rules: 
+  Review-Results: 
     runs-on: ubuntu-latest
     needs: Perform-ShiftLeft-Analysis
     steps:
