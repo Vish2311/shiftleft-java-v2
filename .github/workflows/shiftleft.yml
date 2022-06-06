@@ -29,6 +29,7 @@ jobs:
       - name: Build Java Binary
         run: |
           mvn compile package && \
+          echo ${GITHUB_WORKSPACE} && \
           ls -R ${GITHUB_WORKSPACE}
         
       - uses: actions/upload-artifact@v2
