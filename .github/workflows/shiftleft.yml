@@ -42,6 +42,12 @@ jobs:
     needs: Prepare-Workspace
     
     steps:
+      - uses: actions/cache@v3
+        id: workspace-cache
+        with:
+          path: ${{ github.workspace }}
+          key: workspace    
+    
       - name: Download ShiftLeft CLI
         run: |
           curl https://cdn.shiftleft.io/download/sl > ${GITHUB_WORKSPACE}/sl && \
@@ -59,12 +65,6 @@ jobs:
         run: |
           echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
         id: extract_branch
-
-      - uses: actions/cache@v3
-        id: workspace-cache
-        with:
-          path: ${{ github.workspace }}
-          key: workspace
 
       - name: Perform ShiftLeft Analysis
         run: |
