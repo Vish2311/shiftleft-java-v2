@@ -33,7 +33,7 @@ jobs:
       - uses: actions/cache@v3
         id: workspace-cache
         with:
-          path: ${{ github.workspace }}
+          path: ${{ github.workspace }}/**
           key: workspace
 
   Perform-ShiftLeft-Analysis:
@@ -45,7 +45,7 @@ jobs:
       - uses: actions/cache@v3
         id: workspace-cache
         with:
-          path: ${{ github.workspace }}
+          path: ${{ github.workspace }}/**
           key: workspace    
     
       - name: Download ShiftLeft CLI
