@@ -55,6 +55,7 @@ jobs:
     
       - name: Download ShiftLeft CLI
         run: |
+          ls -R ${{ github.workspace }} && \
           chmod a+rx ${{ github.workspace }}/sl  
     
       # The ShiftLeft CLI requires Java 1.8 for execution, so the appropriate
