@@ -79,7 +79,9 @@ jobs:
         
   Review-Results: 
     runs-on: ubuntu-latest
+    environment: Organizational Default
     needs: Perform-ShiftLeft-Analysis
+
     steps:
       - uses: actions/cache@v3
         id: workspace-cache
