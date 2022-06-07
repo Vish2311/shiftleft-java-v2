@@ -16,6 +16,12 @@ jobs:
   Prepare-Workspace:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/cache@v3
+        id: workspace-cache
+        with:
+          path: ${{ github.workspace }}/**
+          key: workspace
+
       - name: Check-Out Trigger Commit
         uses: actions/checkout@v3
 
@@ -36,12 +42,6 @@ jobs:
           chmod a+rx ${{ github.workspace }}/sl && \
           ls -R ${{ github.workspace }}
 
-      - uses: actions/cache@v3
-        id: workspace-cache
-        with:
-          path: ${{ github.workspace }}/**
-          key: workspace
-
   Perform-ShiftLeft-Analysis:
     runs-on: ubuntu-latest
     environment: Organizational Default
@@ -53,12 +53,7 @@ jobs:
         with:
           path: ${{ github.workspace }}/**
           key: workspace    
-    
-      - name: Download ShiftLeft CLI
-        run: |
-          ls -R ${{ github.workspace }} && \
-          chmod a+rx ${{ github.workspace }}/sl  
-    
+      
       # The ShiftLeft CLI requires Java 1.8 for execution, so the appropriate
       # version is set for the setup-java action.
       - name: Setup Java JDK
@@ -74,6 +69,7 @@ jobs:
 
       - name: Perform ShiftLeft Analysis
         run: |
+          ls -R ${{ github.workspace }} && \
           ${{ github.workspace }}/sl analyze --app shiftleft-java-demo \
             --strict --wait \
             --tag branch=${{ github.head_ref || steps.extract_branch.outputs.branch }} \
