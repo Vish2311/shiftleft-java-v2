@@ -66,7 +66,7 @@ jobs:
           echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
         id: extract_branch
 
-      - name: Perform ShiftLeft Analysis
+      - name: Initiate ShiftLeft Analysis
         run: |
           ${{ github.workspace }}/sl analyze --app shiftleft-java-demo \
             --strict --wait \
