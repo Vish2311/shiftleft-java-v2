@@ -86,7 +86,12 @@ jobs:
         with:
           path: ${{ github.workspace }}/**
           key: workspace   
-          
+
+      - name: Download ShiftLeft CLI
+        run: |
+          curl https://cdn.shiftleft.io/download/sl > ${{ github.workspace }}/sl && \
+          chmod a+rx ${{ github.workspace }}/sl
+
       - name: Validate Build Rules
         run: |
           ${GITHUB_WORKSPACE}/sl check-analysis --app shiftleft-java-demo \
