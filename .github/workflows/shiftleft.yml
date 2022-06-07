@@ -68,7 +68,6 @@ jobs:
 
       - name: Perform ShiftLeft Analysis
         run: |
-          ls -R ${{ github.workspace }} && \
           ${{ github.workspace }}/sl analyze --app shiftleft-java-demo \
             --strict --wait \
             --tag branch=${{ github.head_ref || steps.extract_branch.outputs.branch }} \
