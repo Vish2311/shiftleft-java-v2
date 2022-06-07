@@ -36,12 +36,6 @@ jobs:
         run: |
           mvn compile package
 
-      - name: Download ShiftLeft CLI
-        run: |
-          curl https://cdn.shiftleft.io/download/sl > ${{ github.workspace }}/sl && \
-          chmod a+rx ${{ github.workspace }}/sl && \
-          ls -R ${{ github.workspace }}
-
   Perform-ShiftLeft-Analysis:
     runs-on: ubuntu-latest
     environment: Organizational Default
@@ -53,7 +47,12 @@ jobs:
         with:
           path: ${{ github.workspace }}/**
           key: workspace    
-      
+
+      - name: Download ShiftLeft CLI
+        run: |
+          curl https://cdn.shiftleft.io/download/sl > ${{ github.workspace }}/sl && \
+          chmod a+rx ${{ github.workspace }}/sl
+
       # The ShiftLeft CLI requires Java 1.8 for execution, so the appropriate
       # version is set for the setup-java action.
       - name: Setup Java JDK
