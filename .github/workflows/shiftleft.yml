@@ -68,7 +68,7 @@ jobs:
 
       - name: Initiate ShiftLeft Analysis
         run: |
-          ${{ github.workspace }}/sl analyze --app shiftleft-java-demo \
+          ${{ github.workspace }}/sl analyze --app shiftleft-java-220709 \
             --strict --wait \
             --tag branch=${{ github.head_ref || steps.extract_branch.outputs.branch }} \
             --vcs-prefix-correction "io/shiftleft=src/main/java/" \
@@ -96,7 +96,7 @@ jobs:
 
       - name: Validate Build Rules
         run: |
-          ${GITHUB_WORKSPACE}/sl check-analysis --app shiftleft-java-demo \
+          ${{ github.workspace }}/sl check-analysis --app shiftleft-java-220709 \
               --branch "${{ github.head_ref || steps.extract_branch.outputs.branch }}" \
               --report \
               --v2 \
