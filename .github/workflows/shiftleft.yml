@@ -97,7 +97,7 @@ jobs:
       - name: Validate Build Rules
         run: |
           ${{ github.workspace }}/sl check-analysis --app shiftleft-java-220709 \
-              --branch "${{ github.head_ref || steps.extract_branch.outputs.branch }}" \
+              --target tag.branch=${{ github.head_ref || steps.extract_branch.outputs.branch }} \
               --report \
               --v2 \
               --github-pr-number=${{ github.event.number }} \
