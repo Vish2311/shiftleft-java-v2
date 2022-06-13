@@ -36,7 +36,7 @@ jobs:
         run: |
           mvn compile package
 
-  Perform-ShiftLeft-Analysis:
+  Perform-Analysis:
     runs-on: ubuntu-latest
     environment: Organizational Default
     needs: Prepare-Workspace
@@ -78,10 +78,10 @@ jobs:
         env:
           SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
         
-  Review-Results: 
+  Review-Analysis: 
     runs-on: ubuntu-latest
     environment: Organizational Default
-    needs: Perform-ShiftLeft-Analysis
+    needs: Perform-Analysis
 
     steps:
       - uses: actions/cache@v3
