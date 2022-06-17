@@ -70,7 +70,7 @@ jobs:
         run: |
           ${{ github.workspace }}/sl analyze \
             --app sl-java-w-vcscorr \
-            --vcs-prefix-correction "*=src/main/java"
+            --vcs-prefix-correction "*=src/main/java" \
             --strict --wait \
             --tag branch=${{ github.head_ref || steps.extract_branch.outputs.branch }} \
             --java --cpg \
