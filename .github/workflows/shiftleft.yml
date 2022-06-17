@@ -47,7 +47,7 @@ jobs:
         run: |
           echo -e "branch = ${{ github.head_ref || steps.extract_branch.outputs.branch }}"
           $GITHUB_WORKSPACE/sl analyze \
-            --app sl-java-0602-w-vcscorr \
+            --app sl-java-0603-w-vcscorr \
             --vcs-prefix-correction "*=src/main/java" \
             --strict --wait \
             --tag branch=${{ github.head_ref || steps.extract_branch.outputs.branch }} \
@@ -73,7 +73,7 @@ jobs:
       - name: Validate Build Rules
         run: |
           $GITHUB_WORKSPACE/sl check-analysis \
-            --app sl-java-0602-w-vcscorr \
+            --app sl-java-0603-w-vcscorr \
             --report \
             --v2 \
             --github-pr-number=${{ github.event.number }} \
