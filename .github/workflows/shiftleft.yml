@@ -69,7 +69,7 @@ jobs:
       - name: Initiate ShiftLeft Analysis
         run: |
           ${{ github.workspace }}/sl analyze \
-            --app shiftleft-java-220709 \
+            --app sl-java-wo-vcscorr \
             --strict --wait \
             --tag branch=${{ github.head_ref || steps.extract_branch.outputs.branch }} \
             --java --cpg \
@@ -97,7 +97,7 @@ jobs:
       - name: Validate Build Rules
         run: |
           ${{ github.workspace }}/sl check-analysis \
-            --app shiftleft-java-220709 \
+            --app sl-java-wo-vcscorr \
             --report \
             --v2 \
             --github-pr-number=${{ github.event.number }} \
