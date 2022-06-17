@@ -68,6 +68,7 @@ jobs:
 
       - name: Initiate ShiftLeft Analysis
         run: |
+          echo -e "branch = ${{ github.head_ref || steps.extract_branch.outputs.branch }}"
           ${{ github.workspace }}/sl analyze \
             --app sl-java-w-vcscorr \
             --vcs-prefix-correction "*=src/main/java" \
