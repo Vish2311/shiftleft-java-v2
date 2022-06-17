@@ -13,15 +13,10 @@ jobs:
   # within a codebases's target binary.  Pre-processing for ShiftLeft Java analysis
   # therefore consists of building a codebase's target binary and making it available
   # to the ShiftLeft CLI for analysis.
-  Prepare-Workspace:
+  Perform-Analysis:
     runs-on: ubuntu-latest
+    environment: Organizational Default
     steps:
-      - uses: actions/cache@v3
-        id: workspace-cache
-        with:
-          path: ${{ github.workspace }}/**
-          key: workspace
-
       - name: Check-Out Trigger Commit
         uses: actions/checkout@v3
 
@@ -35,18 +30,6 @@ jobs:
       - name: Build Java Binary
         run: |
           mvn compile package
-
-  Perform-Analysis:
-    runs-on: ubuntu-latest
-    environment: Organizational Default
-    needs: Prepare-Workspace
-    
-    steps:
-      - uses: actions/cache@v3
-        id: workspace-cache
-        with:
-          path: ${{ github.workspace }}/**
-          key: workspace    
 
       - name: Download ShiftLeft CLI
         run: |
