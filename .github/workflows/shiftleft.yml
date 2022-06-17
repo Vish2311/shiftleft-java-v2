@@ -33,8 +33,8 @@ jobs:
 
       - name: Download ShiftLeft CLI
         run: |
-          curl https://cdn.shiftleft.io/download/sl > $GITHUB_WORKSPACE/sl && \
-          chmod a+rx $GITHUB_WORKSPACE/sl
+          curl https://cdn.shiftleft.io/download/sl > ${GITHUB_WORKSPACE}/sl && \
+          chmod a+rx ${GITHUB_WORKSPACE}/sl
 
       # The ShiftLeft CLI requires Java 1.8 for execution, so the appropriate
       # version is set for the setup-java action.
@@ -46,7 +46,7 @@ jobs:
       - name: Initiate ShiftLeft Analysis
         run: |
           echo -e "branch = ${{ github.head_ref || steps.extract_branch.outputs.branch }}"
-          $GITHUB_WORKSPACE/sl analyze \
+          ${GITHUB_WORKSPACE}/sl analyze \
             --app sl-java-0603-w-vcscorr \
             --vcs-prefix-correction "*=src/main/java" \
             --strict --wait \
@@ -67,12 +67,12 @@ jobs:
 
       - name: Download ShiftLeft CLI
         run: |
-          curl https://cdn.shiftleft.io/download/sl > $GITHUB_WORKSPACE/sl && \
-          chmod a+rx $GITHUB_WORKSPACE/sl
+          curl https://cdn.shiftleft.io/download/sl > ${GITHUB_WORKSPACE}/sl && \
+          chmod a+rx ${GITHUB_WORKSPACE}/sl
 
       - name: Validate Build Rules
         run: |
-          $GITHUB_WORKSPACE/sl check-analysis \
+          ${GITHUB_WORKSPACE}/sl check-analysis \
             --app sl-java-0603-w-vcscorr \
             --report \
             --v2 \
