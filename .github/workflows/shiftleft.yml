@@ -70,7 +70,7 @@ jobs:
         run: |
           echo -e "branch = ${{ github.head_ref || steps.extract_branch.outputs.branch }}"
           ${{ github.workspace }}/sl analyze \
-            --app sl-java-w-vcscorr \
+            --app sl-java-w-vcsc-def \
             --vcs-prefix-correction "*=src/main/java" \
             --strict --wait \
             --tag branch=${{ github.head_ref || steps.extract_branch.outputs.branch }} \
