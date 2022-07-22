@@ -48,7 +48,7 @@ jobs:
           export SL_VCS_COMMIT_ID=$(git rev-parse --short "$GITHUB_SHA")
           echo -e "branch = ${{ github.head_ref || steps.extract_branch.outputs.branch }}"
           ${GITHUB_WORKSPACE}/sl analyze \
-            --app sl-java-bkdemo \
+            --app sl-java-ahtg \
             --vcs-prefix-correction "*=src/main/java" \
             --strict --wait \
             --tag branch=${{ github.head_ref || steps.extract_branch.outputs.branch }} \
@@ -74,7 +74,7 @@ jobs:
       - name: Validate Build Rules
         run: |
           ${GITHUB_WORKSPACE}/sl check-analysis \
-            --app sl-java-bkdemo \
+            --app sl-java-ahtg \
             --report \
             --v2 \
             --target=tag.branch=${{ github.head_ref || steps.extract_branch.outputs.branch }} \
