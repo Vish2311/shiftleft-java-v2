@@ -75,8 +75,8 @@ jobs:
         run: |
          ${GITHUB_WORKSPACE}/sl check-analysis \
             --app sl-java-2207HD \
-            --v2 \
             --no-build-rules \
+            --v2 \
             --target=tag.branch=main
 
         env:
