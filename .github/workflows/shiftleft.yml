@@ -76,7 +76,9 @@ jobs:
           ${GITHUB_WORKSPACE}/sl check-analysis \
             --app sl-java-2207HD \
             --report \
-            --target=tag.branch=main
+            --v2 \
+            --target=tag.branch=main \ 
+            --no-build-rules
         env:
           SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
           
