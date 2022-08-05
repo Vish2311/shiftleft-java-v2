@@ -14,6 +14,7 @@ jobs:
   # therefore consists of building a codebase's target binary and making it available
   # to the ShiftLeft CLI for analysis.
   Perform-Analysis:
+    if: ${{ false }}
     runs-on: ubuntu-latest
     environment: Organizational Default
     steps:
@@ -78,6 +79,7 @@ jobs:
             --v2 \
             --no-build-rules \
             --report-file ${GITHUB_WORKSPACE}/report.md
+          echo "${GITHUB_WORKSPACE}"
           cat ${GITHUB_WORKSPACE}/report.md
         env:
           SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
