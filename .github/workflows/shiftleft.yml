@@ -13,8 +13,8 @@ jobs:
   # within a codebases's target binary.  Pre-processing for ShiftLeft Java analysis
   # therefore consists of building a codebase's target binary and making it available
   # to the ShiftLeft CLI for analysis.
+#    if: ${{ false }}
   Perform-Analysis:
-    if: ${{ false }}
     runs-on: ubuntu-latest
     environment: Organizational Default
     steps:
@@ -49,7 +49,7 @@ jobs:
           export SL_VCS_COMMIT_ID=$(git rev-parse --short "$GITHUB_SHA")
           echo -e "branch = ${{ github.head_ref || steps.extract_branch.outputs.branch }}"
           ${GITHUB_WORKSPACE}/sl analyze \
-            --app sl-java-2207HD \
+            --app sl-java-220805 \
             --vcs-prefix-correction "*=src/main/java" \
             --strict --wait \
             --tag branch=${{ github.head_ref || steps.extract_branch.outputs.branch }} \
@@ -61,7 +61,7 @@ jobs:
   Review-Analysis: 
     runs-on: ubuntu-latest
     environment: Organizational Default
-#    needs: Perform-Analysis
+    needs: Perform-Analysis
 
     steps:
       - name: Check-Out Trigger Commit
@@ -75,7 +75,7 @@ jobs:
       - name: Validate Build Rules
         run: |
           ${GITHUB_WORKSPACE}/sl check-analysis \
-            --app sl-java-2207HD \
+            --app sl-java-220805 \
             --v2 \
             --no-build-rules \
             --report-file ${GITHUB_WORKSPACE}/analysis-report.md \
