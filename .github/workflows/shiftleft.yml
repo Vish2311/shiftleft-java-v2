@@ -78,17 +78,14 @@ jobs:
           ${GITHUB_WORKSPACE}/sl check-analysis \
             --app sl-java-220805 \
             --v2 \
-            --no-build-rules \
-            --report-file ${GITHUB_WORKSPACE}/analysis-report.md \
-            --branch=main
+            --no-build-rules
         env:
           SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
 
-      - uses: actions/upload-artifact@v3
-        with:
-          name: my-artifact
-          path: analysis-report.md
-
+#      - uses: actions/upload-artifact@v3
+#        with:
+#          name: my-artifact
+#          path: analysis-report.md
 
 #          ${GITHUB_WORKSPACE}/sl check-analysis \
 #            --app sl-java-2207HD \
