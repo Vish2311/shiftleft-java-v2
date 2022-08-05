@@ -75,6 +75,8 @@ jobs:
 
       - name: Validate Build Rules
         run: |
+          mkdir noyml
+          cd noyml
           ${GITHUB_WORKSPACE}/sl check-analysis \
             --app sl-java-220805 \
             --v2 \
