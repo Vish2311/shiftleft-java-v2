@@ -78,7 +78,7 @@ jobs:
           ${GITHUB_WORKSPACE}/sl check-analysis \
             --app sl-java-220805 \
             --v2 \
-            --no-build-rules
+            --no-build-rules \
             --branch=main
         env:
           SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
