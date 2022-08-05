@@ -78,7 +78,8 @@ jobs:
             --app sl-java-2207HD \
             --v2 \
             --no-build-rules \
-            --report-file ${GITHUB_WORKSPACE}/analysis-report.md    
+            --report-file ${GITHUB_WORKSPACE}/analysis-report.md \
+            --branch=main
         env:
           SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
 
