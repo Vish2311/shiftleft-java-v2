@@ -76,7 +76,7 @@ jobs:
           ${GITHUB_WORKSPACE}/sl check-analysis \
             --app sl-java-2207HD \
             --report \
-            --v2 \        
+            --v2 \
             --no-build-rules \
             --report-file report.md && \
           cat report.md
