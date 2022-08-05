@@ -81,7 +81,13 @@ jobs:
           cat ${GITHUB_WORKSPACE}/report.md
         env:
           SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
-          
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: ${GITHUB_WORKSPACE}/report.md
+
+
 #          ${GITHUB_WORKSPACE}/sl check-analysis \
 #            --app sl-java-2207HD \
 #            --report \
