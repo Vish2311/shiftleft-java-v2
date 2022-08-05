@@ -13,8 +13,8 @@ jobs:
   # within a codebases's target binary.  Pre-processing for ShiftLeft Java analysis
   # therefore consists of building a codebase's target binary and making it available
   # to the ShiftLeft CLI for analysis.
-#    if: ${{ false }}
   Perform-Analysis:
+    if: ${{ false }}
     runs-on: ubuntu-latest
     environment: Organizational Default
     steps:
@@ -62,7 +62,7 @@ jobs:
   Review-Analysis: 
     runs-on: ubuntu-latest
     environment: Organizational Default
-    needs: Perform-Analysis
+#    needs: Perform-Analysis
 
     steps:
       - name: Check-Out Trigger Commit
