@@ -49,6 +49,7 @@ jobs:
           export SL_VCS_COMMIT_ID=$(git rev-parse --short "$GITHUB_SHA")
           echo -e "branch = ${{ github.head_ref || steps.extract_branch.outputs.branch }}"
           ${GITHUB_WORKSPACE}/sl analyze \
+            --wait \
             --app sl-java-220805 \
             --vcs-prefix-correction "*=src/main/java" \
             --strict --wait \
