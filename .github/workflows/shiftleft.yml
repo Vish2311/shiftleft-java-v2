@@ -73,7 +73,13 @@ jobs:
 
       - name: Validate Build Rules
         run: |
-         ${GITHUB_WORKSPACE}/sl check-analysis --app sl-java-2207HD --v2 --no-build-rules
+          ${GITHUB_WORKSPACE}/sl check-analysis \
+            --app sl-java-2207HD \
+            --report \
+            --v2 \        
+            --no-build-rules \
+            --report-file report.md && \
+          cat report.md
         env:
           SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
           
