@@ -79,7 +79,7 @@ jobs:
             --v2 \
             --no-build-rules \
             --report-file ${GITHUB_WORKSPACE}/report.md
-          echo "${GITHUB_WORKSPACE}"
+          echo "Workspace = ${GITHUB_WORKSPACE}"
           cat ${GITHUB_WORKSPACE}/report.md
         env:
           SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
