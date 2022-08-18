@@ -14,7 +14,6 @@ jobs:
   # therefore consists of building a codebase's target binary and making it available
   # to the ShiftLeft CLI for analysis.
   Perform-Analysis:
-    if: ${{ false }}
     runs-on: ubuntu-latest
     environment: Organizational Default
     steps:
@@ -31,12 +30,10 @@ jobs:
       - name: Build Java Binary
         run: |
           mvn compile package
-
       - name: Download ShiftLeft CLI
         run: |
           curl https://cdn.shiftleft.io/download/sl > ${GITHUB_WORKSPACE}/sl && \
           chmod a+rx ${GITHUB_WORKSPACE}/sl
-
       # The ShiftLeft CLI requires Java 1.8 for execution, so the appropriate
       # version is set for the setup-java action.
       - name: Setup Java JDK
@@ -49,7 +46,6 @@ jobs:
           export SL_VCS_COMMIT_ID=$(git rev-parse --short "$GITHUB_SHA")
           echo -e "branch = ${{ github.head_ref || steps.extract_branch.outputs.branch }}"
           ${GITHUB_WORKSPACE}/sl analyze \
-            --wait \
             --app sl-java-220818 \
             --vcs-prefix-correction "*=src/main/java" \
             --strict --wait \
@@ -72,8 +68,7 @@ jobs:
         run: |
           curl https://cdn.shiftleft.io/download/sl > ${GITHUB_WORKSPACE}/sl && \
           chmod a+rx ${GITHUB_WORKSPACE}/sl
-
-     - name: Validate Build Rules
+      - name: Validate Build Rules
         run: |
           ${GITHUB_WORKSPACE}/sl check-analysis \
             --app sl-java-220818 \
