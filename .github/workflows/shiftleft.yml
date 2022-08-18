@@ -62,7 +62,7 @@ jobs:
   Review-Analysis: 
     runs-on: ubuntu-latest
     environment: Organizational Default
-#    needs: Perform-Analysis
+    needs: Perform-Analysis
 
     steps:
       - name: Check-Out Trigger Commit
