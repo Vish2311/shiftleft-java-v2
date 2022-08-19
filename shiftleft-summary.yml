@@ -1,5 +1,11 @@
 build_rules:
-  - id: zero-findings-of-any-type-any-severity
-    threshold: 0
+  - id: higher-side-sast-findings
+    finding_types:
+      - vuln
+      - secret
+    cvss_31_severity_ratings:
+      - critical
+      - high
+      - medium
     options:
-      num_findings: 99
+      num_findings: 5
