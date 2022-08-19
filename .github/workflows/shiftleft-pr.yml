@@ -71,7 +71,6 @@ jobs:
         run: |
           ${GITHUB_WORKSPACE}/sl check-analysis \
             --app sl-java-220818 \
-            --report \
             --v2 \
             --config ./shiftleft-summary-segmented.yml
             --target=tag.branch=${{ github.head_ref || steps.extract_branch.outputs.branch }} \
