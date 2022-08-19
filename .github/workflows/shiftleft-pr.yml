@@ -69,9 +69,10 @@ jobs:
           chmod a+rx ${GITHUB_WORKSPACE}/sl
       - name: Validate Build Rules
         run: |
-          ${GITHUB_WORKSPACE}/sl check-analysis \
+          ${GITHUB_WORKSPACE}/sl check-analysis --app shiftleft-java-demo \
+            --branch "${{ github.head_ref || steps.extract_branch.outputs.branch }}" \
+            --report \
             --app sl-java-220820 \
-            --v2 \
             --config ./shiftleft-rules.yml
             --target=tag.branch=${{ github.head_ref || steps.extract_branch.outputs.branch }} \
             --github-pr-number=${{ github.event.number }} \
