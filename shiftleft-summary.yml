@@ -1,5 +1,5 @@
 build_rules:
-  - id: allow-zero-findings
+  - id: zero-findings-of-any-type
     finding_types:
       - "*"
     severity:
