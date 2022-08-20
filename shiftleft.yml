@@ -1,3 +1,5 @@
+source:
+  branch: main
 build_rules:
   - id: higher-side-sast-findings
     finding_types:
@@ -16,6 +18,5 @@ build_rules:
       - secret
     cvss_31_severity_ratings:
       - low
-    threshold: 999
     options:
       num_findings: 100
