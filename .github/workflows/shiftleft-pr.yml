@@ -72,8 +72,6 @@ jobs:
           ${GITHUB_WORKSPACE}/sl check-analysis --app sl-java-220821 \
             --branch "${{ github.head_ref || steps.extract_branch.outputs.branch }}" \
             --v2 \
-            --report \
-            --config ./shiftleft-rules.yml \
             --target=tag.branch=${{ github.head_ref || steps.extract_branch.outputs.branch }} \
             --github-pr-number=${{ github.event.number }} \
             --github-pr-user=${{ github.repository_owner }} \
