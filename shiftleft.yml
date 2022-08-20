@@ -1,5 +1,3 @@
-source:
-  branch: main
 build_rules:
   - id: higher-side-sast-findings
     finding_types:
