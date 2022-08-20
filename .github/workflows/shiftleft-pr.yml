@@ -45,7 +45,7 @@ jobs:
           export SL_VCS_COMMIT_ID=$(git rev-parse --short "$GITHUB_SHA")
           echo -e "branch = ${{ github.head_ref || steps.extract_branch.outputs.branch }}"
           ${GITHUB_WORKSPACE}/sl analyze \
-            --app sl-java-220820 \
+            --app sl-java-220821 \
             --vcs-prefix-correction "*=src/main/java" \
             --strict --wait \
             --tag branch=${{ github.head_ref || steps.extract_branch.outputs.branch }} \
@@ -69,9 +69,10 @@ jobs:
           chmod a+rx ${GITHUB_WORKSPACE}/sl
       - name: Validate Build Rules
         run: |
-          ${GITHUB_WORKSPACE}/sl check-analysis --app sl-java-220820 \
+          ${GITHUB_WORKSPACE}/sl check-analysis --app sl-java-220821 \
             --branch "${{ github.head_ref || steps.extract_branch.outputs.branch }}" \
             --v2 \
+            --report \
             --config ./shiftleft-rules.yml \
             --target=tag.branch=${{ github.head_ref || steps.extract_branch.outputs.branch }} \
             --github-pr-number=${{ github.event.number }} \
