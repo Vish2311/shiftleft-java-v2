@@ -70,8 +70,8 @@ jobs:
       - name: Validate Build Rules
         run: |
           ${GITHUB_WORKSPACE}/sl check-analysis --app sl-java-220822 \
-            --branch "${{ github.head_ref || steps.extract_branch.outputs.branch }}" \
             --v2 \
+            --target tag.branch=${{ github.head_ref || steps.extract_branch.outputs.branch }} \            
             --github-pr-number=${{ github.event.number }} \
             --github-pr-user=${{ github.repository_owner }} \
             --github-pr-repo=${{ github.event.repository.name }} \
