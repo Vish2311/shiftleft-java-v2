@@ -1,19 +1,23 @@
 source:
   branch: main
 build_rules:
-  - id: allow-zero-findings
+  - id: higher-side-sast-findings
     finding_types:
       - vuln
       - secret
-      - insight
-      - "*"
-    severity:
-      - SEVERITY_HIGH_IMPACT
-      - SEVERITY_MEDIUM_IMPACT
-      - SEVERITY_LOW_IMPACT
-    threshold: 0
-  - id: reachable-oss-vuln
-    finding_types: [oss_vuln]
+    cvss_31_severity_ratings:
+      - critical
+      - high
+      - medium
+    threshold: 999
     options:
-      reachable: true
-      num_findings: 10
+      num_findings: 100
+  - id: low-side-sast-findings
+    finding_types:
+      - vuln
+      - secret
+    cvss_31_severity_ratings:
+      - low
+    threshold: 999
+    options:
+      num_findings: 100
