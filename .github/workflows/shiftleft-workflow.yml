@@ -71,7 +71,7 @@ jobs:
       - name: Validate Build Rules
         run: |
           ${GITHUB_WORKSPACE}/sl check-analysis \
-            --app sl-java-220820 \
+            --app sl-java-220821 \
             --v2 \
             --config ./shiftleft-summary.yml
         env:
