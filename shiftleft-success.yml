@@ -1,0 +1,21 @@
+build_rules:
+  - id: higher-side-sast-findings
+    finding_types:
+      - vuln
+      - secret
+    cvss_31_severity_ratings:
+      - critical
+      - high
+      - medium
+    threshold: 999
+    options:
+      num_findings: 3
+  - id: low-side-sast-findings
+    finding_types:
+      - vuln
+      - secret
+    cvss_31_severity_ratings:
+      - low
+    threshold: 999
+    options:
+      num_findings: 6
