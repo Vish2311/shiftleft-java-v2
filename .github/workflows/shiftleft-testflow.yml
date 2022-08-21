@@ -21,6 +21,7 @@ jobs:
           chmod a+rx ${GITHUB_WORKSPACE}/sl
       - name: Validate Build Rules
         run: |
+          set +o pipefail
           ${GITHUB_WORKSPACE}/sl check-analysis \
             --app sl-java-220822 \
             --v2 \
