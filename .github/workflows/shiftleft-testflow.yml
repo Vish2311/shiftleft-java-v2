@@ -31,5 +31,6 @@ jobs:
             --v2 \
             --config ./shiftleft-success.yml ; (( err |= $? ))
           set -e
+          echo -e "err = ${err}"
         env:
           SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
