@@ -21,6 +21,7 @@ jobs:
           chmod a+rx ${GITHUB_WORKSPACE}/sl
       - name: Validate Build Rules
         run: |
+        
           set +e
           ${GITHUB_WORKSPACE}/sl check-analysis \
             --app sl-java-220822 \
@@ -32,5 +33,12 @@ jobs:
             --config ./shiftleft-success.yml ; (( err |= $? ))
           set -e
           echo -e "err = ${err}"
+
+          #Fail the build if there was an error
+          if [ $err ]
+          then
+              exit -1
+          fi          
+          
         env:
           SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
