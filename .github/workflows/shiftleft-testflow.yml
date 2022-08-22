@@ -37,7 +37,7 @@ jobs:
           #Fail the build if there was an error
           if [ $err -ne 0 ]
           then
-              exit $err
+              exit -1
           fi          
           
         env:
