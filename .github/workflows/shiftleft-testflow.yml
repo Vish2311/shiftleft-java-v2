@@ -35,9 +35,9 @@ jobs:
           echo -e "err = ${err}"
 
           #Fail the build if there was an error
-          if [ $err ]
+          if [ $err -ne 0 ]
           then
-              exit -1
+              exit $err
           fi          
           
         env:
