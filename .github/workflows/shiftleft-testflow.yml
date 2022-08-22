@@ -26,7 +26,7 @@ jobs:
           ${GITHUB_WORKSPACE}/sl check-analysis \
             --app sl-java-220822 \
             --v2 \
-            --config ./shiftleft-success.yml ; (( err |= $? ))
+            --config ./shiftleft-failure.yml ; (( err |= $? ))
           ${GITHUB_WORKSPACE}/sl check-analysis \
             --app sl-java-220822 \
             --v2 \
